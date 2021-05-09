@@ -62,7 +62,7 @@ function initializeLiff(myLiffId) {
  * Initialize the app by calling functions handling individual app components
  */
 function initializeApp() {
-    displayLiffData();
+    // displayLiffData();
     displayIsInClientInfo();
     registerButtonHandlers();
 
@@ -97,6 +97,11 @@ function displayIsInClientInfo() {
     } else {
         document.getElementById('isInClientMessage').textContent = 'You are opening the app in an external browser.';
         document.getElementById('shareTargetPicker').classList.toggle('hidden');
+        
+        if (!liff.isLoggedIn()) {
+            // set `redirectUri` to redirect the user to a URL other than the front page of your LIFF app.
+            liff.login();
+        }
     }
 }
 
