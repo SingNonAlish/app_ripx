@@ -64,11 +64,15 @@ function initializeLiff(myLiffId) {
 function initializeApp() {
     // displayLiffData();
     displayIsInClientInfo();
-    registerButtonHandlers();
+    // registerButtonHandlers();
 
     // check if the user is logged in/out, and disable inappropriate button
     if (liff.isLoggedIn()) {
-        document.getElementById('liffLoginButton').disabled = true;
+        // document.getElementById('liffLoginButton').disabled = true;
+        if (!liff.isLoggedIn()) {
+            // set `redirectUri` to redirect the user to a URL other than the front page of your LIFF app.
+            liff.login();
+        }
     } else {
         document.getElementById('liffLogoutButton').disabled = true;
     }
@@ -97,11 +101,6 @@ function displayIsInClientInfo() {
     } else {
         document.getElementById('isInClientMessage').textContent = 'You are opening the app in an external browser.';
         document.getElementById('shareTargetPicker').classList.toggle('hidden');
-        
-        if (!liff.isLoggedIn()) {
-            // set `redirectUri` to redirect the user to a URL other than the front page of your LIFF app.
-            liff.login();
-        }
     }
 }
 
